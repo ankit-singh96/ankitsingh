@@ -1,0 +1,76 @@
+<div class="contactme mt-8" id="contactme">
+  <p class="title">Contact Me</p>
+  <p class="sub-title">Get in touch with me</p>
+
+  <div class="form">
+    <section>
+      <h3 class="mb-0"><fa-icon [icon]="emailIcon"></fa-icon> Email</h3>
+      <p class="mt-0">dnkumar0510@gmail.com</p>
+
+      <h3 class="my-0"><fa-icon [icon]="locationIcon"></fa-icon> Location</h3>
+      <p class="mt-0">Agra, UP(283105)</p>
+    </section>
+    <section>
+      <form [formGroup]="form" (ngSubmit)="onSubmit()">
+        <div>
+          <section>
+            <label for="name">Name</label>
+            <input
+              type="text"
+              id="name"
+              required
+              minlength="3"
+              formControlName="name"
+            />
+          </section>
+          <section>
+            <label for="email">Email</label>
+            <input type="email" id="email" required formControlName="email" />
+          </section>
+        </div>
+        <div>
+          <label for="project">Project</label>
+          <input
+            type="text"
+            minlength="3"
+            id="project"
+            required
+            formControlName="project"
+          />
+        </div>
+        <div>
+          <label for="message">Message</label>
+          <textarea
+            rows="5"
+            cols="33"
+            id="message"
+            required
+            minlength="5"
+            formControlName="message"
+          >
+          </textarea>
+        </div>
+        <p
+          [ngStyle]="{ display: isError ? 'block' : 'none' }"
+          class="mb-0"
+          style="color: #f72585; font-size: 12px"
+        >
+          Something went wrong
+        </p>
+        <p
+          [ngStyle]="{ display: isSuccess ? 'block' : 'none' }"
+          class="mb-0"
+          style="color: #50c878; font-size: 12px; font-weight: bold"
+        >
+          Your Data Successfully Sent!
+        </p>
+
+        <button class="btn flex" type="submit" [disabled]="submitted">
+          <span *ngIf="isSending !== true; else elseBlock">Send</span>
+          <ng-template #elseBlock>Sending...</ng-template>
+          <fa-icon [icon]="sendIcon"></fa-icon>
+        </button>
+      </form>
+    </section>
+  </div>
+</div>
